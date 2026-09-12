@@ -32,15 +32,59 @@
 <meta name="twitter:image" content="https://jiz-dan.github.io/XNK/og-image.png">
 
 <style>
-  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0A0A0A; }
-  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  :root {
+    --ink-900: #0A0A0A; --ink-700: #2E2E2E; --ink-500: #666666; --ink-300: #BDBDBD;
+    --ink-100: #EFEFEF; --ink-050: #F7F7F7; --bg-app: #F5F5F5;
+  }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background: linear-gradient(-45deg, #F7F7F7, #F0F0F0, #EDEDED, #F7F7F7);
+    background-size: 400% 400%; animation: meshDrift 15s ease infinite;
+    display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  @keyframes meshDrift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  .card {
+    width: 100%; max-width: 360px; margin: 20px; padding: 32px 28px;
+    background: #fff; border-radius: 24px;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08), 0 8px 16px -4px rgba(0,0,0,0.04);
+    text-align: center;
+  }
+  .card h1 {
+    margin: 0 0 4px; font-size: 15px; font-weight: 800; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--ink-900);
+  }
+  .card p { margin: 0 0 24px; font-size: 12.5px; color: var(--ink-500); }
+  .role-btn {
+    display: block; width: 100%; padding: 16px; margin-bottom: 12px;
+    border: none; border-radius: 14px; cursor: pointer;
+    font-size: 14px; font-weight: 700; font-family: inherit;
+    background: var(--ink-050); color: var(--ink-900);
+    transition: background .15s ease, transform .1s ease;
+  }
+  .role-btn:last-of-type { margin-bottom: 0; }
+  .role-btn:hover { background: var(--ink-100); }
+  .role-btn:active { transform: scale(0.98); }
+  .role-btn.is-primary {
+    background: linear-gradient(160deg, #1C1C1C 0%, #2E2E2E 55%, #000000 100%);
+    color: #fff;
+  }
+  .role-btn.is-primary:hover { filter: brightness(1.15); }
 </style>
 </head>
 <body>
-<iframe
-  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec"
-  allow="clipboard-write"
-  title="XNK Gym OS"
-></iframe>
+<!-- Pemilih role polos -- TIDAK ada password di sini, cuma tombol yang
+     pindah ke admin.html / owner.html (navigasi statis GitHub Pages,
+     tidak menyentuh Apps Script sama sekali di langkah ini). Password
+     sungguhan diminta di halaman admin.html/owner.html masing-masing
+     (form login GAS di-iframe di sana) -- lihat OPERATIONS.md soal
+     kenapa address bar tetap pindah ke script.google.com begitu form
+     itu di-submit; halaman ini tidak mengubah itu. -->
+<div class="card">
+  <h1>XNK Gym OS</h1>
+  <p>Masuk sebagai</p>
+  <button type="button" class="role-btn is-primary" onclick="location.href='admin.html'">Admin</button>
+  <button type="button" class="role-btn" onclick="location.href='owner.html'">Owner</button>
+</div>
 </body>
 </html>
