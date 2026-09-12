@@ -37,13 +37,14 @@
 </style>
 </head>
 <body>
-<!-- Arahkan ke login polos (bukan ?view=owner) -- login form-nya sekarang
-     target="_parent" (bukan "_top"), jadi submit-nya berhenti DI DALAM
-     iframe ini, tidak lompat keluar dari halaman GitHub ini. Role
-     (admin/owner) ditentukan akun di sheet Users, bukan dari halaman ini --
-     dashboard yang muncul sesudah login ikut role akun aslinya. -->
+<!-- ?view=owner -- Owner.html sendiri yang tampilkan login (lock overlay
+     #xnkLoginLock, dibuka lewat google.script.run, NOL navigasi), bukan
+     Index.html lagi. Itu sebabnya address bar tidak pindah: tidak ada
+     form-POST/target sama sekali di jalur ini. Kalau src ini balik ke
+     bare exec (tanpa ?view=owner), doGet() jatuh ke Index.html -- form
+     POST lama, target="_top", PASTI lompat ke script.google.com. -->
 <iframe
-  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec"
+  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec?view=owner"
   allow="clipboard-write"
   title="XNK Gym OS -- Owner"
 ></iframe>
