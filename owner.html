@@ -37,12 +37,13 @@
 </style>
 </head>
 <body>
-<!-- Cuma pintu masuk. Login/logout & navigasi lain di dalam app SELALU
-     pindah ke domain script.google.com (target="_top", disengaja -- lihat
-     CLAUDE.md/OPERATIONS.md project XNK Gym OS). Wrapper ini tidak
-     mencegah itu. -->
+<!-- Arahkan ke login polos (bukan ?view=owner) -- login form-nya sekarang
+     target="_parent" (bukan "_top"), jadi submit-nya berhenti DI DALAM
+     iframe ini, tidak lompat keluar dari halaman GitHub ini. Role
+     (admin/owner) ditentukan akun di sheet Users, bukan dari halaman ini --
+     dashboard yang muncul sesudah login ikut role akun aslinya. -->
 <iframe
-  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec?view=owner"
+  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec"
   allow="clipboard-write"
   title="XNK Gym OS -- Owner"
 ></iframe>
