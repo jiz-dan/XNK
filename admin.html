@@ -42,9 +42,15 @@
      Index.html lagi. Itu sebabnya address bar tidak pindah: tidak ada
      form-POST/target sama sekali di jalur ini. Kalau src ini balik ke
      bare exec (tanpa ?view=admin), doGet() jatuh ke Index.html -- form
-     POST lama, target="_top", PASTI lompat ke script.google.com. -->
+     POST lama, target="_top", PASTI lompat ke script.google.com.
+
+     &wrapper=... -- base URL halaman GitHub INI, url-encoded. GAS relay
+     ini apa adanya (tidak tau/hardcode domain ini) supaya logout/dst
+     (goToWithClick_, ScriptInti.html) balik ke sini, bukan ke exec
+     mentah -- lihat pageUrl_() di sana. Ganti KEDUANYA (path di sini
+     DAN encoded value-nya) kalau repo/username GitHub ini pindah. -->
 <iframe
-  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec?view=admin"
+  src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec?view=admin&wrapper=https%3A%2F%2Fjiz-dan.github.io%2FXNK%2F"
   allow="clipboard-write"
   title="XNK Gym OS -- Admin"
 ></iframe>
