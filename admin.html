@@ -8,6 +8,11 @@
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://jiz-dan.github.io/XNK/admin.html">
 
+<!-- Mulai handshake DNS/TLS ke Apps Script SEKARANG, paralel sama parsing
+     halaman kecil ini -- bukan nunggu baru mulai pas <iframe> di bawah
+     ditemukan parser. -->
+<link rel="preconnect" href="https://script.google.com">
+
 <!-- Favicon -->
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -34,6 +39,21 @@
 <style>
   html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0A0A0A; }
   iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* z-index DI ATAS iframe -- iframe sendiri tampak buram/putih sampai
+     dokumen di dalamnya kelar dimuat (doGet Apps Script + wrapping
+     sandbox Google, memang lambat, lihat OPERATIONS.md), jadi overlay
+     ini nutupin celah itu sampai onload iframe di bawah bener-bener
+     nembak. */
+  #wrapLoading {
+    position: fixed; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+    background: #0A0A0A; color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 600;
+  }
+  #wrapLoading .spinner {
+    width: 22px; height: 22px; margin-right: 10px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.15); border-top-color: rgba(255,255,255,0.65);
+    animation: wrapSpin 0.8s linear infinite;
+  }
+  @keyframes wrapSpin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -49,10 +69,12 @@
      (goToWithClick_, ScriptInti.html) balik ke sini, bukan ke exec
      mentah -- lihat pageUrl_() di sana. Ganti KEDUANYA (path di sini
      DAN encoded value-nya) kalau repo/username GitHub ini pindah. -->
+<div id="wrapLoading"><div class="spinner"></div>Memuat...</div>
 <iframe
   src="https://script.google.com/macros/s/AKfycbyPsGZUY8C7uplUdOzQ7ejxpRlMeojonuG0FwJnJTlJa8gBUUDCQqzL7QGdeeUwN2cSag/exec?view=admin&wrapper=https%3A%2F%2Fjiz-dan.github.io%2FXNK%2F"
   allow="clipboard-write"
   title="XNK Gym OS -- Admin"
+  onload="document.getElementById('wrapLoading').style.display='none'"
 ></iframe>
 </body>
 </html>
